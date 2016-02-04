@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using KanbanAPI.Models;
+using System.Web.Http.Cors;
 
 namespace KanbanAPI
 {
@@ -11,6 +12,12 @@ namespace KanbanAPI
     {
         public static void Register(HttpConfiguration config)
         {
+
+            var rules = new EnableCorsAttribute("*", "*", "*");
+
+            config.EnableCors(rules);
+
+
             // Web API configuration and services
 
             // Web API routes
