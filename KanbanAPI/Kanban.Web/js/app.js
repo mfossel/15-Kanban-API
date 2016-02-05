@@ -12,7 +12,7 @@ angular.module('kanban').controller('IndexController', function ($scope, $resour
         }
     });
 
-    var CardResource = $resource(apiUrl + '/cards/:CardId', { listId: '@CardId' });
+    var CardResource = $resource(apiUrl + '/cards/:CardId', {CardId: '@CardId' });
 
     function activate() {
         ListResource.query(function (data) {
@@ -24,9 +24,8 @@ angular.module('kanban').controller('IndexController', function ($scope, $resour
         });
     }
  
-
-
     $scope.newList = {};
+    $scope.newCard = {};
 
     $scope.addList = function () {
         ListResource.save($scope.newList, function () {
@@ -36,18 +35,17 @@ angular.module('kanban').controller('IndexController', function ($scope, $resour
     };
 
     $scope.deleteList = function (list) {
-        list.$delete(function () {
+        list.$delete(function () {           
             activate();
         })
     };
 
+
     $scope.deleteCard = function (card) {
         CardResource.delete(card, function () {
-
             activate();
         });
     };
-    
 
 
     activate(); 
