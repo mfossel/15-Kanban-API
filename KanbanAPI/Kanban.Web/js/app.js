@@ -12,6 +12,8 @@ angular.module('kanban').controller('IndexController', function ($scope, $resour
         }
     });
 
+    var CardResource = $resource(apiUrl + '/cards/:CardId', { listId: '@CardId' });
+
     function activate() {
         ListResource.query(function (data) {
             $scope.lists = data;
@@ -40,7 +42,7 @@ angular.module('kanban').controller('IndexController', function ($scope, $resour
     };
 
     $scope.deleteCard = function (card) {
-        ListResource.remove($scope.card, function () {
+        CardResource.delete(card, function () {
 
             activate();
         });
