@@ -4,7 +4,7 @@ angular.module('kanban').value('apiUrl', 'http://localhost:51586/api')
 
 
 angular.module('kanban').controller('IndexController', function ($scope, $resource, apiUrl) {
-    var ListResource = $resource(apiUrl + '/lists/:listId', { listId: '@id' }, {
+    var ListResource = $resource(apiUrl + '/lists/:listId', { listId: '@ListId' }, {
         'cards': {
             url: apiUrl + '/lists/:listId/cards',
             method: 'GET',
@@ -33,15 +33,19 @@ angular.module('kanban').controller('IndexController', function ($scope, $resour
         });
     };
 
-    //$scope.deleteList = function () {
+    $scope.deleteList = function (list) {
+        list.$delete(function () {
+            activate();
+        })
+    };
 
-    //    ListResource.remove($scope.currentList, function () {
+    $scope.deleteCard = function (card) {
+        ListResource.remove($scope.card, function () {
 
-    //        activate();
-    //    });
-    //};
-
-    //CARDS
+            activate();
+        });
+    };
+    
 
 
 

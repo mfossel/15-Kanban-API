@@ -21,12 +21,12 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="list in lists">
                     <div class="panel panel-default">
-                        <div class="panel-heading" class="center-block"> {{list.Name}}  
-                            <a class="btn btn-default pull-right" style="margin-left:auto" role="button"><i class="fa fa-eraser"></i></a>
+                        <div class="panel-heading" class="center-block" style="font-size:larger"> {{list.Name}}  
+                            <a class="btn btn-default pull-right" style="margin-left:auto" role="button" ng-click="deleteList(list)"><i class="fa fa-eraser"></i></a>
                         </div>
                         <div class="panel-body" ng-repeat="card in list.cards">
                            {{card.Text}}
-                            <a class="btn btn-sm pull-right" style="margin-left:auto" role="button"><i class="fa fa-times-circle"></i></a>
+                            <a class="btn btn-sm pull-right" style="margin-left:auto" role="button"><i class="fa fa-times-circle" ng-click="deleteCard(card)"></i></a>
                         </div>
                     </div>
                 </div>
