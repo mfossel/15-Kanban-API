@@ -50,8 +50,6 @@ angular.module('kanban').controller('IndexController', function ($scope, $resour
     
 
 
-
-
     activate(); 
 
 });
