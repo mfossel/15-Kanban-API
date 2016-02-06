@@ -33,7 +33,7 @@
                         <a class="btn btn-sm pull-right" style="margin-left:auto" role="button"><i class="fa fa-times-circle" ng-click="deleteCard(card)"></i></a>
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Add new card..." ng-model="list.newCardText" ng-keypress="($event.charCode==13)?addCard(list):return">
+                        <input type="text" class="form-control" placeholder="Add new card..." ng-model="list.newCard.Text" ng-keypress="($event.charCode==13)?addCard(list):return">
                         <span class="input-group-btn">
                             <button class="btn btn-default" type="button" ng-click="addCard(list)"> <i class="fa fa-sticky-note-o"></i> </button>
                         </span>

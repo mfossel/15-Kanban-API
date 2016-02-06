@@ -46,8 +46,8 @@ var ListResource = $resource(apiUrl + '/lists/:listId', {listId: '@ListId' },
     };
     
     $scope.addCard = function (list) {
-        $scope.newCard.ListID = list.ListId;
-        CardResource.save($scope.newCard, function () {
+       list.newCard.ListID = list.ListId;
+        CardResource.save(list.newCard, function () {
 
             activate();
         });
