@@ -20,12 +20,24 @@
 
 
     <div class="container-fluid">
+
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="list in lists" >
                 <div class="panel panel-default">
                     <div class="panel-heading" class="center-block" style="font-size:larger">
-                        {{list.Name}}
-                        <a class="btn btn-default pull-right" style="margin-left:auto" role="button" ng-click="deleteList(list)"><i class="fa fa-eraser"></i></a>
+                        <span ng-show="list.Edit">
+                            <div class="input-group">
+                                <input type="text" class="form-control" ng-model="list.Name" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" ng-click="saveList(list)"> <i class="fa fa fa-save"></i></button>
+                                </span>
+                            </div>
+                        </span>
+                        <span ng-hide="list.Edit">
+                            <span ng-click="list.Edit=true">{{list.Name}}</span> 
+                            <a class="btn btn-default pull-right" style="margin-left:auto" role="button" ng-click="deleteList(list)"><i class="fa fa-eraser"></i></a>
+                        </span>                       
+                    
                     </div>
 
                     <div class="panel-body" ng-repeat="card in list.cards">
@@ -45,7 +57,7 @@
 
         <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="panel panel-default">
-                <div class="panel panel-heading" ng-model="currentList">
+                <div class="panel panel-heading" class="center-block" ng-model="currentList">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Add new list..." ng-model="newList.Name" ng-keypress="($event.charCode==13)?addList():return">
                         <span class="input-group-btn">

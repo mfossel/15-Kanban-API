@@ -6,17 +6,20 @@ angular.module('kanban').value('apiUrl', 'http://localhost:51586/api')
 angular.module('kanban').controller('IndexController', function ($scope, $resource, apiUrl) {
     var CardResource = $resource(apiUrl + '/cards/:CardId', { CardId: '@CardId' },
     {
-        'save': {method: 'POST'}
+        'save': { method: 'POST' }
     }
     );
 
-var ListResource = $resource(apiUrl + '/lists/:listId', {listId: '@ListId' },
-    {
-        'cards': {
-            url: apiUrl + '/lists/:listId/cards',
-            method: 'GET',
-            isArray: true
-        }
+    var ListResource = $resource(apiUrl + '/lists/:listId', { listId: '@ListId' },
+        {
+            'cards': {
+                url: apiUrl + '/lists/:listId/cards',
+                method: 'GET',
+                isArray: true
+            },
+        
+        'update': { method: 'PUT' }
+        
         });
 
     function activate() {
@@ -28,25 +31,25 @@ var ListResource = $resource(apiUrl + '/lists/:listId', {listId: '@ListId' },
             });
         });
     }
- 
+
     $scope.newList = {};
     $scope.newCard = {};
 
     $scope.addList = function () {
         ListResource.save($scope.newList, function () {
-            
+
             activate();
         });
     };
 
     $scope.deleteList = function (list) {
-        list.$remove(function () {           
+        list.$remove(function () {
             activate();
         })
     };
-    
+
     $scope.addCard = function (list) {
-       list.newCard.ListID = list.ListId;
+        list.newCard.ListID = list.ListId;
         CardResource.save(list.newCard, function () {
 
             activate();
@@ -60,7 +63,12 @@ var ListResource = $resource(apiUrl + '/lists/:listId', {listId: '@ListId' },
         });
     };
 
+    $scope.saveList = function (list) {
+        list.$update(function () {
+            activate();
+        });
+    };
 
-    activate(); 
+    activate();
 
 });
