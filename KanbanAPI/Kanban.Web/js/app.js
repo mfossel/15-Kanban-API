@@ -1,4 +1,4 @@
-﻿angular.module('kanban', ['ngResource']);
+﻿angular.module('kanban', ['ngResource', 'angular-sortable-view']);
 
 angular.module('kanban').value('apiUrl', 'http://localhost:51586/api')
 
